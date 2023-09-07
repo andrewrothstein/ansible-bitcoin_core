@@ -1,0 +1,32 @@
+---
+# defaults file for bitcoin-core
+bitcoin_core_ver: '25.0'
+
+bitcoin_core_apps:
+  - bitcoin-cli
+  - bitcoind
+  - bitcoin-qt
+  - bitcoin-tx
+  - bitcoin-wallet
+  - test_bitcoin
+
+bitcoin_core_parent_install_dir: /usr/local
+
+bitcoin_core_mirror: https://bitcoin.org/bin
+
+bitcoin_core_checksums:
+  '25.0':
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-aarch64-linux-gnu.tar.gz
+    aarch64-linux-gnu: sha256:3a7bdd959a0b426624f63f394f25e5b7769a5a2f96f8126dcc2ea53f3fa5212b
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-arm-linux-gnueabihf.tar.gz
+    arm-linux-gnueabihf: sha256:e537c8630b05e63242d979c3004f851fd73c2a10b5b4fdbb161788427c7b3c0f
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-riscv64-linux-gnu.tar.gz
+    riscv64-linux-gnu: sha256:fe6e347a66043946920c72c9c4afca301968101e6b82fb90a63d7885ebcceb32
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-linux-gnu.tar.gz
+    x86_64-linux-gnu: sha256:33930d432593e49d58a9bff4c30078823e9af5d98594d2935862788ce8a20aec
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-powerpc64le-linux-gnu.tar.gz
+    powerpc64le-linux-gnu: sha256:fa8af160782f5adfcea570f72b947073c1663b3e9c3cd0f82b216b609fe47573
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-x86_64-apple-darwin.tar.gz
+    x86_64-apple-darwin: sha256:5708fc639cdfc27347cccfd50db9b73b53647b36fb5f3a4a93537cbe8828c27f
+    # https://bitcoin.org/bin/bitcoin-core-25.0/bitcoin-25.0-arm64-apple-darwin.tar.gz
+    arm64-apple-darwin: sha256:3b35075d6c1209743611c705a13575be2668bc069bc6301ce78a2e1e53ebe7cc

@@ -1,0 +1,14 @@
+---
+# vars file for bitcoin-core
+bitcoin_core_os: '{{ ansible_system | lower }}-gnu'
+bitcoin_core_arch: '{{ ansible_architecture }}'
+bitcoin_core_platform: '{{ bitcoin_core_arch }}-{{ bitcoin_core_os }}'
+bitcoin_core_name: bitcoin-{{ bitcoin_core_ver }}
+bitcoin_core_tgz: '{{ bitcoin_core_name }}-{{ bitcoin_core_platform }}.{{ bitcoin_core_archive_type | default("tar.gz") }}'
+bitcoin_core_tgz_url: '{{ bitcoin_core_mirror }}/bitcoin-core-{{ bitcoin_core_ver }}/{{ bitcoin_core_tgz }}'
+bitcoin_core_checksum: '{{ bitcoin_core_checksums[bitcoin_core_ver][bitcoin_core_platform] }}'
+
+bitcoin_core_tmp_tgz: /tmp/{{ bitcoin_core_tgz }}
+bitcoin_core_install_dir: '{{ bitcoin_core_parent_install_dir }}/{{ bitcoin_core_name }}'
+bitcoin_core_bin_dir: '{{ bitcoin_core_install_dir }}/bin'
+bitcoin_core_links_dir: '{{ bitcoin_core_parent_install_dir }}/bin'
