@@ -1,6 +1,6 @@
 ---
 # defaults file for bitcoin-core
-bitcoin_core_ver: '25.0'
+bitcoin_core_ver: '27.0'
 
 bitcoin_core_apps:
   - bitcoin-cli
