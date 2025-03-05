@@ -32,4 +32,5 @@ dl_ver() {
     dl $ver arm64-apple-darwin
 }
 
-dl_ver ${1:-25.0}
+#dl_ver 26.0
+dl_ver ${1:-27.0}

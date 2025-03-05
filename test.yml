@@ -1,10 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.bitcoin_core
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: /usr/local/bin/bitcoin-cli --version
+    - name: Executing 'bitcoin-cli --version'
+      ansible.builtin.command: bitcoin-cli --version
+      changed_when: false
       register: bitcoin_core_test_output
-    - name: bitcoin-cli --version
-      debug:
+    - name: Output from 'bitcoin-cli --version'
+      ansible.builtin.debug:
         msg: '{{ bitcoin_core_test_output.stdout }}'

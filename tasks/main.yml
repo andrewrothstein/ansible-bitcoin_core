@@ -1,41 +1,43 @@
 ---
-- include_role:
-    name: andrewrothstein.unarchivedeps
-- name: check for installation in {{ bitcoin_core_install_dir }}
+- name: Check for installation in {{ bitcoin_core_install_dir }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ bitcoin_core_install_dir }}'
   changed_when: false
   register: bitcoin_core_binary
-- when: not bitcoin_core_binary.stat.exists
+- name: Downloading and installing bitcoin-core
+  when: not bitcoin_core_binary.stat.exists
   block:
-    - name: downloading {{ bitcoin_core_tgz_url }}
+    - name: Downloading {{ bitcoin_core_tgz_url }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ bitcoin_core_tgz_url }}'
         dest: '{{ bitcoin_core_tmp_tgz }}'
-        mode: 0644
-    - name: unarchive {{ bitcoin_core_tmp_tgz }}
+        mode: '644'
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
+    - name: Unarchive {{ bitcoin_core_tmp_tgz }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ bitcoin_core_tmp_tgz }}'
         dest: '{{ bitcoin_core_parent_install_dir }}'
         creates: '{{ bitcoin_core_install_dir }}'
   always:
-    - name: rm {{ bitcoin_core_tmp_tgz }}
+    - name: Rm -f {{ bitcoin_core_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ bitcoin_core_tmp_tgz }}'
         state: absent
-- name: creating links in {{ bitcoin_core_links_dir }} to apps in {{ bitcoin_core_bin_dir }}
+- name: Creating links in {{ bitcoin_core_links_dir }} to apps in {{ bitcoin_core_bin_dir }}
   become: true
   become_user: root
   with_items: '{{ bitcoin_core_apps }}'
-  file:
+  ansible.builtin.file:
     src: '{{ bitcoin_core_bin_dir }}/{{ item }}'
     dest: '{{ bitcoin_core_links_dir }}/{{ item }}'
     state: link
